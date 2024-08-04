@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: WSO2 FHIR API
+  title: Patient API
   description: This API allows you to read the patient details of a single patient based on its id.
   version: 1.0.0
   license:
@@ -23,7 +23,7 @@ paths:
         '200':
           description: The patient resource.
           content:
-            application/json:
+            application/fhir+json:
               schema:
                 $ref: '#/components/schemas/Patient'
         '400':
@@ -32,6 +32,10 @@ paths:
           description: Patient not found.
         '500':
           description: Server error.
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/FHIRError'
 components:
   schemas:
     Patient:
@@ -75,27 +79,4 @@ components:
             type: object
             properties:
               use:
-                type: string
-                example: "official"
-              family:
-                type: string
-                example: "Smith"
-              given:
-                type: array
-                items:
-                  type: string
-                example: ["John", "Jacob"]
-              prefix:
-                type: array
-                items:
-                  type: string
-                example: ["Dr."]
-        gender:
-          type: string
-          example: "unknown"
-    OperationOutcome:
-      type: object
-      description: FHIR OperationOutcome resource.
-    FHIRError:
-      type: object
-      description: FHIR Error resource.
+                type: 
