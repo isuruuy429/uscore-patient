@@ -85,10 +85,6 @@ dependencies = [
 	{org = "ballerina", name = "time"},
 	{org = "ballerina", name = "url"}
 ]
-modules = [
-	{org = "ballerina", packageName = "http", moduleName = "http"},
-	{org = "ballerina", packageName = "http", moduleName = "http.httpscerr"}
-]
 
 [[package]]
 org = "ballerina"
@@ -382,7 +378,6 @@ org = "healthcare_samples"
 name = "health.fhir.r4.uscore501.patient"
 version = "1.0.0"
 dependencies = [
-	{org = "ballerina", name = "http"},
 	{org = "ballerinax", name = "health.fhir.r4"},
 	{org = "ballerinax", name = "health.fhir.r4.uscore501"},
 	{org = "ballerinax", name = "health.fhirr4"}
