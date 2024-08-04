@@ -38,7 +38,7 @@ service / on new fhirr4:Listener(9090, apiConfig) {
         meta: {
             lastUpdated: "2021-08-24T10:10:10Z",
             profile: [
-                "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner"
+                "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"
             ]
         },
         identifier: [
