@@ -1,0 +1,101 @@
+openapi: 3.0.0
+info:
+  title: WSO2 FHIR API
+  description: This API allows you to read the patient details of a single patient based on its id.
+  version: 1.0.0
+  license:
+    name: WSO2 Software License
+    url: https://wso2.com/licenses/eula/3.2
+servers:
+  - url: http://localhost:9090
+paths:
+  /fhir/r4/Patient/{id}:
+    get:
+      summary: Read the current state of a single resource based on its id.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The ID of the patient.
+      responses:
+        '200':
+          description: The patient resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+        '400':
+          description: Invalid ID supplied.
+        '404':
+          description: Patient not found.
+        '500':
+          description: Server error.
+components:
+  schemas:
+    Patient:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          example: "Patient"
+        id:
+          type: string
+          example: "1"
+        meta:
+          type: object
+          properties:
+            lastUpdated:
+              type: string
+              format: date-time
+              example: "2021-08-24T10:10:10Z"
+            profile:
+              type: array
+              items:
+                type: string
+              example: ["http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"]
+        identifier:
+          type: array
+          items:
+            type: object
+            properties:
+              use:
+                type: string
+                example: "official"
+              system:
+                type: string
+                example: "http://hl7.org/fhir/sid/us-npi"
+              value:
+                type: string
+                example: "1234567890"
+        name:
+          type: array
+          items:
+            type: object
+            properties:
+              use:
+                type: string
+                example: "official"
+              family:
+                type: string
+                example: "Smith"
+              given:
+                type: array
+                items:
+                  type: string
+                example: ["John", "Jacob"]
+              prefix:
+                type: array
+                items:
+                  type: string
+                example: ["Dr."]
+        gender:
+          type: string
+          example: "unknown"
+    OperationOutcome:
+      type: object
+      description: FHIR OperationOutcome resource.
+    FHIRError:
+      type: object
+      description: FHIR Error resource.
