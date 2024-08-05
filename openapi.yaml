@@ -79,4 +79,30 @@ components:
             type: object
             properties:
               use:
-                type: 
+                type: string
+                example: "official"
+              family:
+                type: string
+                example: "Smith"
+              given:
+                type: array
+                items:
+                  type: string
+                example: ["John", "Doe"]
+    FHIRError:
+      type: object
+      properties:
+        issue:
+          type: array
+          items:
+            type: object
+            properties:
+              severity:
+                type: string
+                example: "error"
+              code:
+                type: string
+                example: "processing"
+              diagnostics:
+                type: string
+                example: "Error processing request"
